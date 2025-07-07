@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; // Importe les widgets de base de Flutter.
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Importe les widgets de base de Flutter.
 
 // Déclare un widget sans état (StatelessWidget) appelé StartScreen.
 class StartScreen extends StatelessWidget {
@@ -28,9 +29,12 @@ class StartScreen extends StatelessWidget {
             ), // Ajoute un effet de transparence.
           ),
           const SizedBox(height: 80), // Espace vertical.
-          const Text(
+          Text(
             'Learn Flutter the fun way!', // Texte d'accroche.
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style: GoogleFonts.lato(
+              color: Colors.white,
+              fontSize: 24
+            ),
           ),
           const SizedBox(height: 40), // Autre espace vertical.
           // Bouton pour démarrer le quiz.
