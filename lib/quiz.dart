@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; // Importe les widgets de base de Flutter.
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/results_screen.dart';
 import 'package:quiz_app/questions_screen.dart'; // Importe l'écran des questions.
 import 'package:quiz_app/start_screen.dart'; // Importe l'écran de démarrage.
 
@@ -30,8 +31,7 @@ class _QuizState extends State<Quiz> {
     selectedAnswers.add(answer);
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
-        activeScreen = 'start-screen';
+        activeScreen = 'results-screen';
       });
     }
   }
@@ -39,14 +39,16 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(context) {
     // Selon la valeur de activeScreen, on affiche l'écran de démarrage ou des questions.
-    final screenWidget = activeScreen == 'start-screen'
+    var screenWidget = activeScreen == 'start-screen'
         ? StartScreen(
             switchScreen,
           ) // Passe la fonction switchScreen à StartScreen.
         : QuestionsScreen(
             onSelectAnswer: chooseAnswer,
           ); // Affiche l'écran des questions.
-
+    if (activeScreen == 'results-screen') {
+      screenWidget =  ResultsScreen(chosenAnswers: selectedAnswers,);
+    }
     // Structure principale de l'application.
     return MaterialApp(
       home: Scaffold(
